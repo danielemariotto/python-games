@@ -14,13 +14,31 @@ import random
 def guess_number():
     print("Welcome to the Number Guessing Game!")
     print("Please select a range for the game.")
-    A = int(input("Enter the lower limit of the range: "))
-    B = int(input("Enter the upper limit of the range: "))
+    while True:
+        try:
+            A = int(input("Enter the lower limit of the range: "))
+        except ValueError:
+            print("Invalid input. Please enter an integer.")
+            continue
+        break
+    while True:
+        try:
+            B = int(input("Enter the upper limit of the range: "))
+        except ValueError:
+            print("Invalid input. Please enter an integer.")
+            continue
+        break
     number = random.randint(A, B)
     guess = None
     count = 0
     while guess != number:
-        guess = int(input(f"Guess the number between {A} and {B}: "))
+        while True:
+            try:
+                guess = int(input(f"Guess the number between {A} and {B}: "))
+            except ValueError:
+                print("Invalid input. Please enter an integer.")
+                continue
+            break
         count += 1
         if guess < number:
             print("Too low!")
