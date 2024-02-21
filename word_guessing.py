@@ -25,23 +25,23 @@ while attempts <= max_attempts:
     letter = input(f'Attempt number {attempts}. \n{name}, enter a letter do you think is in the word: ')
     if letter in word:
         position = word.index(letter)
-        wordcopy = wordcopy[:position] + '-' +  wordcopy[position+1:]
-        words_guessed= words_guessed[:position] + letter + words_guessed[position+1:]
+        wordcopy = wordcopy[:position] + '-' +  wordcopy[position+1:] # replace the letter with a '-'
+        words_guessed= words_guessed[:position] + letter + words_guessed[position+1:] # replace the '_' with the letter
 
         position_list.append(position)
 
+        # if the letter is present more than once in the word
         while letter in wordcopy:
-            position = wordcopy.index(letter)
+            position = wordcopy.index(letter) # find the position of the letter in the copy of the word
             position_list.append(position)
-
-            wordcopy = wordcopy[:position] + '-' + wordcopy[position+1:]
-            words_guessed= words_guessed[:position] + letter + words_guessed[position+1:]
+            wordcopy = wordcopy[:position] + '-' + wordcopy[position+1:] # replace the letter with a '-'
+            words_guessed= words_guessed[:position] + letter + words_guessed[position+1:] # replace the '_' with the letter
         else:
             position_list=[]
 
-        if len(position_list)>0:
+        if len(position_list)>0: # if the letter is present more than once in the word
             print(f'Correct. The letter {letter} is in these positions:', position_list)
-        else:
+        else: # if the letter is present only once in the word
             print(f'Correct. The letter {letter} is in position:', position)
         print('words_guessed: ', words_guessed)
         position_list=[]
